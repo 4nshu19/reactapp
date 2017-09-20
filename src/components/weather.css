@@ -1,0 +1,27 @@
+.form-group-1
+{
+  position: relative;
+  display: inline-block;
+}
+
+.searchInput{
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
+  font-size: 36px;
+  color: grey;
+  padding-left: 50px;
+  left: 600px;
+}
+
+.input-addon-1
+{
+  position: absolute;
+  left: 10px;
+  z-index: 10;
+}
+.input-addon-1 img
+{
+  width: 30px;
+  margin-top: 50px; 
+}
