@@ -9,7 +9,6 @@ class Weather extends Component {
     }
     this.updatedata = this.updatedata.bind(this);
     this.getData = this.getData.bind(this);
-    this.clipboardupdate = this.clipboardupdate.bind(this);
   }
 
   updatedata(e){
@@ -26,9 +25,7 @@ class Weather extends Component {
    
   }
 
-  clipboardupdate(e){
-   e.clipboardData = "hellow";
-  }
+  
   render() {
     return (
      
