@@ -31,8 +31,9 @@ class Weather extends Component {
   }
   render() {
     return (
+     
       <div className="form-group-1">
-        
+         <br /> <br />
         <form onSubmit={this.getData} >
         <input type="text" className="searchInput" placeholder = "Enter Location" onChange={this.updatedata} value={this.state.input}/>
         </form>
