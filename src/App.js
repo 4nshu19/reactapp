@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import App from './components/news';
 import Weather from './components/weather';
-import Giphy from './components/giphy';
 import Github from './components/github';
+import Flickr from './components/flickr';
 
 
 class App1 extends Component {
@@ -14,6 +14,7 @@ class App1 extends Component {
     this.onWeather = this.onWeather.bind(this);
     this.onNews = this.onNews.bind(this);
     this.onGiphy = this.onGiphy.bind(this);
+    this.onFlickr = this.onFlickr.bind(this);
   }
   
   onWeather (){
@@ -26,6 +27,10 @@ class App1 extends Component {
   onGiphy (){
     this.setState({show: 2});
   }
+
+  onFlickr(){
+    this.setState({show: 3});
+  }
   
   render() {
     return (
@@ -37,13 +42,16 @@ class App1 extends Component {
                 <li><a href="#" onClick = {this.onNews} >News</a></li>
                 <li><a href="#" onClick = {this.onWeather}>Weather</a></li>
                 <li><a href="#" onClick = {this.onGiphy}>Github</a></li>
+                <li><a href="#" onClick = {this.onFlickr}>Flickr</a></li>
               </ul>
             </div>
           </nav>
       { this.state.show == 0  ?
           <App />
        : this.state.show==1 ?
-      <Weather /> : <Github />}
+      <Weather /> : 
+       this.state.show == 2 ? <Github />
+       : <Flickr />}
       </div>
     );
   }

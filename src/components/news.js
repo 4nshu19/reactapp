@@ -120,6 +120,7 @@ class Search extends Component {
     return (
       <form onSubmit = {this.props.onSubmit} >
         <input
+          placeholder= "Enter topic for news"
           type="text"
           value={value}
           onChange={onChange}
