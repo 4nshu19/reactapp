@@ -1,126 +1,79 @@
 import React, { Component } from 'react';
 import './github.css';
 
-
-class Github extends Component {
-  constructor(props) {
-    super(props)
-    
-    this.state = {
-      username: '4nshu19',
-      realName: '',
-      avatar: '',
-      location: '',
-      repos: '',
-      followers: '',
-      url: '',
-      notFound: ''
+class Weather extends Component {
+  constructor(props){
+    super(props);
+    this.state =  {input: '',
+                apidata: ''
     }
+    this.updatedata = this.updatedata.bind(this);
+    this.getData = this.getData.bind(this);
   }
-  render() {
-    return (
-      <div>
-        <SearchBox fetchUser={this.fetchUser.bind(this)}/>
-        <Card data={this.state} />
-      </div>
-    )
+
+  updatedata(e){
+    this.setState({ input: e.target.value});
+  
   }
   
-  // the api request function
-  fetchApi(url) { 
-    
+  getData(e){  
+    e.preventDefault();
+    var url = "https://api.github.com/users/"+ this.state.input ;
     fetch(url)
-      .then((res) => res.json() )
-      .then((data) => {
-        
-        // update state with API data
-        this.setState({
-          username: data.login,
-          realName: data.name,
-          avatar: data.avatar_url,
-          location: data.location,
-          repos: data.public_repos,
-          followers: data.followers,
-          url: data.html_url,
-          notFound: data.message
-        })
-      })
-      .catch((err) => console.log('oh no!') )
+      .then (d => d.json())
+        .then (result => this.setState({apidata: result}))
+   
   }
-  
-  fetchUser(username) {
-    let url = `https://api.github.com/users/${username}`
-    this.fetchApi(url)
-  }
-  
-  componentDidMount() {
-    let url = `https://api.github.com/users/${this.state.username}`
-    this.fetchApi(url)
-  }
-}
 
-class SearchBox extends Component {
+ 
+  
   render() {
     return (
-      <form 
-        className="searchbox" 
-        onSubmit={this.handleClick.bind(this)}>
-        <input
-          ref="search"
-          className="searchbox__input" 
-          type="text" 
-          placeholder="type username..."/>
+     
+      <div className="form-group-1">
+         <br /> <br />
+        <form onSubmit={this.getData} >
+        <input type="text" className="searchInput" placeholder = "Enter Github Username" onChange={this.updatedata} value={this.state.input}/>
+        </form>
         
-        <input
-          type="submit"
-          className="searchbox__button"
-          value="Search GitHub User" />
-      </form>
-    )
-  }
-  
-  handleClick(e) {
-    e.preventDefault()
-    let username = this.refs.search.getDOMNode().value
-    // sending the username value to parent component to fetch new data from API
-    this.props.fetchUser(username)
-    this.refs.search.getDOMNode().value = ''
-  }
-}
+        <table className = "striped">
+        <thead>
+          <tr>
+              <th>Data</th>
+              <th>Value</th>
+          </tr>    
+        </thead>
 
-class Card extends Component {
-  render() {
-    let data = this.props.data
-    
-    if (data.notFound === 'Not Found') {
-      // when username is not found...
-      return <h3 className="card__notfound">User not found. Try again!</h3>
-    } else {
-      // if username found, then...
-      return (
-        <div className="card">
-          <a href={data.url} target="_blank">
-            <img className="card__avatar" src={data.avatar} />             
-          </a>
-          <h2 className="card__username">
-            <a className="card__link" href={data.url} target="_blank">{data.username}</a></h2>
-          <dl>
-            <dt>Real name</dt>
-            <dd>{data.realName}</dd>
-
-            <dt>Location</dt>
-            <dd>{data.location}</dd>
-
-            <dt>Number of public repos</dt>
-            <dd>{data.repos}</dd>
-
-            <dt>Number of followers</dt>
-            <dd>{data.followers}</dd>
-          </dl>
-        </div>
-      )
-    }
+        <tbody>
+          <tr>
+            <td>Your Name is </td>
+            <td>{ this.state.apidata && this.state.apidata.name}</td>
+            
+          </tr>
+          <tr>
+            <td>Your Github URL is </td>
+            <td>{ this.state.apidata && <a href={this.state.apidata.html_url} > Click Here </a>}</td>
+          </tr>
+          <tr>
+            <td>Your Followers Count is  </td>
+            <td>{ this.state.apidata && this.state.apidata.followers}</td>
+          </tr>
+          <tr>
+            <td>Your Following Count </td>
+            <td>{ this.state.apidata && this.state.apidata.following}</td>
+          </tr>
+          <tr>
+            <td>Your Public Repos Count </td>
+            <td>{ this.state.apidata && this.state.apidata.public_repos}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      <img className= "image" src = {this.state.apidata.avatar_url}  />
+      </div>  
+    );
   }
 }
-export default Github;
-// React.render(<App />, document.getElementById('app'))
+
+export default Weather;
