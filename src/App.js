@@ -4,6 +4,7 @@ import './App.css';
 import App from './components/news';
 import Weather from './components/weather';
 import Giphy from './components/giphy';
+import Github from './components/github';
 
 
 class App1 extends Component {
@@ -35,14 +36,14 @@ class App1 extends Component {
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li><a href="#" onClick = {this.onNews} >News</a></li>
                 <li><a href="#" onClick = {this.onWeather}>Weather</a></li>
-                <li><a href="#" onClick = {this.onGiphy}>Giphy</a></li>
+                <li><a href="#" onClick = {this.onGiphy}>Github</a></li>
               </ul>
             </div>
           </nav>
       { this.state.show == 0  ?
           <App />
        : this.state.show==1 ?
-      <Weather /> : <Giphy />}
+      <Weather /> : <Github />}
       </div>
     );
   }

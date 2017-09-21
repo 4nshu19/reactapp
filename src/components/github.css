@@ -1,132 +1,104 @@
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700,600);
-body {
-  background: #ecf0f1;
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 400;
-}
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900");
 * {
+  box-sizing: border-box;
+}
+body {
+  margin-top: 2rem;
+  font-family: 'Lato', sans-serif;
+  
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.1rem;
+}
+.searchbox {
+  max-width: 20rem;
+  margin: 1rem auto;
+}
+.searchbox__input {
+  height: 3rem;
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  padding: 0 1rem;
+  color: #003d44;
+  border-radius: 0.2rem;
+}
+.searchbox__button {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: none;
+  margin: 1rem 0 0 0;
+  background: #11e7ff;
+  color: #006b77;
+  font-weight: 700;
+  border-radius: 0.4rem;
+}
+.searchbox__button:hover {
+  background: #00def6;
+}
+.card {
+  position: relative;
+  background: #00b0c3;
+  max-width: 20rem;
+  margin: 7rem auto 2rem;
+  border: solid 5px #09a;
+  border-radius: 0.4rem;
+  padding: 5.5rem 2.5rem 1rem;
+}
+.card__avatar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 10rem;
+  height: auto;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  border-radius: 50%;
+  background: #09a;
+  padding: 5px;
+  max-width: 100%;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+.card__avatar:hover {
+  background: #008290;
+}
+.card__username {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 1rem auto;
+}
+.card__link {
+  color: #fff;
+  border-bottom: solid 2px #fff;
+  text-decoration: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.card__link:hover {
+  opacity: 0.8;
+}
+.card__notfound {
+  text-align: center;
+  margin: 0 auto;
+  padding: 1rem;
+}
+/* some non-BEM stuff to avoid overloading the JSX for demo purposes */
+dl {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-*:active, *:focus {
-  border: 0;
-  outline: 0;
-}
-a {
-  text-decoration: none;
-  display: inline-block;
-}
-#card {
-  width: 25rem;
-  margin: auto;
-  overflow: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
-.search--box label {
-  position: relative;
-}
-.search--box label:after {
-  position: absolute;
-  content: "";
-  border-right: 0.625rem solid transparent;
-  border-left: 0.625rem solid transparent;
-  border-bottom: 0.625rem solid #fff;
-  bottom: -1.0625rem;
-  right: 50%;
-  margin-right: -0.3125rem;
-}
-.search--box input[type='search'] {
-  width: 100%;
-  font: 1rem 'Titillium Web', sans-serif;
-  color: #1a4e8e;
-  border: 0;
-  padding: 0.75rem 0.9375rem 0.9375rem;
-  background: #e6ebed;
-  border-radius: 0.3125rem 0.3125rem 0 0;
-  text-align: center;
-  box-sizing: border-box;
-}
-.notfound {
-  background: #fff;
-  padding: 1.875rem;
+dt,
+dd {
   text-align: center;
 }
-.notfound h2 {
-  font-size: 2rem;
-  color: #2368bd;
-  margin-bottom: 0.625rem;
+dt {
+  font-weight: 900;
+  margin-bottom: 0.2rem;
 }
-.notfound p {
-  font-size: 1rem;
-  color: #a3b6bb;
-}
-.github--profile {
-  width: 100%;
-}
-.github--profile__info {
-  background: #fff;
-  text-align: center;
-  padding: 1.875rem 0.9375rem;
-}
-.github--profile__info img {
-  width: 6.25rem;
-  height: 6.25rem;
-  border-radius: 50%;
-  display: block;
-  box-shadow: 0 0 0.0625rem rgba(0, 0, 0, .5);
-}
-.github--profile__info h2 a {
-  font-size: 1.65rem;
-  color: #2368bd;
-}
-.github--profile__info h3 {
-  font-size: 1.1885rem;
-  color: #bdcbce;
-}
-.github--profile__state {
-  background: #1a4e8e;
-  text-align: center;
-  padding: 1.875rem 0.9375rem;
-  border-radius: 0 0 0.3125rem 0.3125rem;
-}
-.github--profile__state ul {
-  direction: ltr;
-}
-.github--profile__state li {
-  list-style: none;
-  display: inline-block;
-  margin-right: 1rem;
-}
-.github--profile__state li:last-child {
-  margin-right: 0;
-}
-.github--profile__state a {
-  color: #fff;
-}
-.github--profile__state i {
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-style: normal;
-  display: block;
-}
-.github--profile__state span {
-  font-size: 0.844rem;
-  letter-spacing: 0.0625rem;
-  color: #2776d7;
-}
-.hesmaili {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #b4c4c8;
-  position: absolute;
-  bottom: 3%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.hesmaili a {
-  color: #2368bd;
+dd {
+  margin: 0 0 1rem 0;
 }
