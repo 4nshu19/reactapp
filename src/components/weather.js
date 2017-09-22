@@ -19,6 +19,7 @@ class Weather extends Component {
   getData(e){  
     e.preventDefault();
     var url = "http://api.wunderground.com/api/560d211d4e155d9d/conditions/q/CA/"+ this.state.input+ ".json" ;
+    
     fetch(url)
       .then (d => d.json())
         .then (result => this.setState({apidata: result}))
@@ -35,7 +36,7 @@ class Weather extends Component {
         <form onSubmit={this.getData} >
         <input type="text" className="searchInput" placeholder = "Enter City to get weather info" onChange={this.updatedata} value={this.state.input}/>
         </form>
-               
+        {this.state.apidata  && this.state.apidata.current_observation &&     
         <table className = "striped">
         <thead>
           <tr>
@@ -69,7 +70,7 @@ class Weather extends Component {
           
         </tbody>
       </table>
-      
+        }
       </div>  
     );
   }

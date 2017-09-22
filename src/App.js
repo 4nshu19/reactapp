@@ -42,7 +42,7 @@ class App1 extends Component {
                 <li><a href="#" onClick = {this.onNews} >News</a></li>
                 <li><a href="#" onClick = {this.onWeather}>Weather</a></li>
                 <li><a href="#" onClick = {this.onGiphy}>Github</a></li>
-                <li><a href="#" onClick = {this.onFlickr}>Flickr</a></li>
+                <li><a href="#" onClick = {this.onFlickr}>NASA Daily</a></li>
               </ul>
             </div>
           </nav>

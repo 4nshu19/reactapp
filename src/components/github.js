@@ -35,7 +35,7 @@ class Weather extends Component {
         <form onSubmit={this.getData} >
         <input type="text" className="searchInput" placeholder = "Enter Github Username" onChange={this.updatedata} value={this.state.input}/>
         </form>
-        
+        {this.state.apidata &&
         <table className = "striped responsive-table" >
         <thead>
           <tr>
@@ -70,7 +70,7 @@ class Weather extends Component {
         </tbody>
       </table>
     
-      
+        }
       <img className= "image" src = {this.state.apidata.avatar_url}  />
       </div>  
     );
